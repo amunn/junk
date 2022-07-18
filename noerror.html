@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Preload test</title>
+    <script src="https://unpkg.com/jspsych@7.2.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
+    <link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body></body>
+  <script>
+    const jsPsych = initJsPsych();
+
+    var m4a_list = [
+      '100.m4a',
+      'aud100.m4a',
+      // 'ff100.m4a'
+    ];
+
+    var preload = {
+      type: jsPsychPreload,
+      auto_preload: true, // automatically load all files based on the main timeline
+      audio: m4a_list,
+      message: "<h2>Preparing your experiment</h2>",
+      show_detailed_errors: true
+    };
+
+    var success = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: 'Your audio loaded successfully',
+      choices: ['End']
+    };
+
+
+
+    jsPsych.run([preload,success]);
+  </script>
+</html>
